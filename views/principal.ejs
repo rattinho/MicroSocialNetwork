@@ -1,0 +1,65 @@
+<%- include('modules/header.ejs') %>
+    <div class="container d-flex align-items-center" style="height:100%">
+        <div class="card justify-content-start d-flex flex-row" style="height: 90%; width: 100%;">
+
+            <div class="card shadow" style="width: 30%; height: 100%;">
+                <div class="card shadow d-flex flex-row align-items-center" style="width: 100%; height: 15%;">
+                    <img src="images/tempimg/avatar.jpeg" class="ms-3 me-2 border border-info shadow rounded" style="width: 25%"/>
+                    <div class="d-flex flex-column">
+                        <h4 class="mt-3"><%= user.username %></h4>
+                        <p style="margin-top: -5px;"><%= user.descricao %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-column align-items-center" style="width: 70%">
+                <div class="d-flex flex-column align-items-center" style="width: 100%; height: 95%;">
+                    <div class="d-flex flex-column align-items-center" style="width: 100%;">
+                        <span class="mt-2">Diga tudo patrão!</span>
+                        <form action="/principal" method="post" style="width: 90%;">
+                            <textarea class="form-control shadow-lg" name="post" aria-label="With textarea" style="height: 150px; width: 100%;"></textarea>
+                            <div class="d-flex flex-row justify-content-end align-items-center mt-2">
+                                <input class="me-1" type="checkbox" name="anon"/>
+                                <span>Envio anonimo?</span>
+                                <button type="submit" class="btn btn-secondary ms-2">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <% let i = 0 %>
+                    <% let pag = page -1 %>
+                    <% while(i != 4 && i+pag*4 != posts.length){ %>
+                        <div class="d-flex flex-column align-items-center mt-2" style="width: 90%;">
+                            <div class="card d-flex flex-row justify-content-start">
+                                <div style="width: 20%">
+                                    <img src="images/tempimg/avatar.jpeg" class="m-3 border border-info shadow rounded-circle" style="width: 60%"/>
+                                </div>
+                                <div class="d-flex flex-column align-items-start mt-3">
+                                    <span><b><%= posts[i+pag*4].username %></b></span>
+                                    <p><i><%= posts[i+pag*4].post %></i></p>
+                                </div>
+                            </div>
+                        </div>
+                    <%  i++;} %>
+                <div class="d-flex flex-column justify-content-center">
+                    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <% if(page == 1){ %> <li class="breadcrumb-item active" aria-current="page">1</li> <% }else{ %> 
+
+                                <li class="breadcrumb-item"><a href="/principal?page=1">1</a></li>
+                                <% if(page >= 3){ %>
+                                <li class="breadcrumb-item"><a href="/principal?page=<%= parseInt(page)-1 %>"> <%= parseInt(page)-1 %></a></li>
+                                <% } %>
+                                <li class="breadcrumb-item active" aria-current="page"> <%= page %> </li>
+                            <% } %>
+                            <% if(page != Math.ceil(parseInt(posts.length)/4)){ %>
+                                <li class="breadcrumb-item"><a href="/principal?page=<%= parseInt(page)+1 %>"><%= parseInt(page)+1 %></a></li>
+                            <% if(page != Math.ceil(parseInt(posts.length)/4)-1){ %>
+                                <li class="breadcrumb-item"><a href="/principal?page=<%= Math.ceil(parseInt(posts.length)/4) %>"><%= Math.ceil(parseInt(posts.length)/4) %></a></li>
+                            <% }} %>
+                            
+                        </ol>
+                      </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include('modules/footer.ejs') %>
