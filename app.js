@@ -7,7 +7,7 @@ const subpost = require(__dirname + '/scripts/submitpost.js')
 app = express()
 
 
-app.use(session({secret: 'CUZINHO'}))
+app.use(session({secret: 'jfiejdiowajdpoawdkopfjae'}))
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
