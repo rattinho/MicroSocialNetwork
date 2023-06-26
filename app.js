@@ -12,20 +12,20 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 
-app.get('/', (req,res)=>{
+app.get('/login', (req,res)=>{
     res.render('login')
 })
 
-app.post('/',(req,res)=>{
+app.post('/login',(req,res)=>{
     if(gu.validaUser(req.body.login, req.body.senha)){
         req.session.login = req.body.login;
-        res.redirect('/principal')
+        res.redirect('/')
     }else{
         res.render('login')
     }
 })
 
-app.get('/principal', (req,res)=>{
+app.get('/', (req,res)=>{
     if(req.session.login){
         if(req.query.page){
             res.render('principal', {user: gu.acessaUser(req.session.login), posts: subpost.acessarPosts(), page: req.query.page})
@@ -33,17 +33,17 @@ app.get('/principal', (req,res)=>{
             res.render('principal', {user: gu.acessaUser(req.session.login), posts: subpost.acessarPosts(), page: 1})
         }
     }else{
-        res.redirect('/')
+        res.redirect('/login')
     }
 })
 
-app.post('/principal', (req,res)=>{
+app.post('/', (req,res)=>{
     if(req.body.anon && req.body.post != ''){
         subpost.adicionaPost("Anonymou", req.body.post)
     }else if(req.body.post != ''){
         subpost.adicionaPost(req.session.login, req.body.post)
     }
-    res.redirect('/principal')
+    res.redirect('/')
 })
 
 
