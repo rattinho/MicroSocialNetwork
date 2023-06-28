@@ -2,10 +2,11 @@ const fs = require('fs')
 
 const nomearquivo = 'dados/posts.json'
 
-exports.adicionaPost = (user, post)=>{
+exports.adicionaPost = (login, post, img)=>{
     const newPost = {
-        username: user,
-        post: post
+        username: login,
+        post: post,
+        avatar: img 
     }
 
     if(fs.existsSync(nomearquivo)){

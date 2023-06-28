@@ -1,8 +1,44 @@
 [
   {
-    "username": "Admin",
-    "email": "felipegr110602@gmail.com",
-    "descricao": "Perfil Administrador",
-    "senha": "#Feli2002pe"
+    "avatarimg": "www.img.com/image.png",
+    "username": "rattinho",
+    "email": "email@email.com",
+    "descricao": "dadawdaawd",
+    "senha": "ad"
+  },
+  {
+    "avatarimg": "dawijdawdjwaidaj",
+    "username": "teste",
+    "email": "dajiwdjoai@ajdiaowjid.com",
+    "descricao": "aiwdaodjawijd",
+    "senha": "ad"
+  },
+  {
+    "avatarimg": "dawijdawdjwaidaj",
+    "username": "teste",
+    "email": "dajiwdjoai@ajdiaowjid.com",
+    "descricao": "aiwdaodjawijd",
+    "senha": "ad"
+  },
+  {
+    "avatarimg": "awdad",
+    "username": "adwda",
+    "email": "dawdawd@dawda.com",
+    "descricao": "adwdwadaw",
+    "senha": "ad"
+  },
+  {
+    "avatarimg": "adwda",
+    "username": "rarwadw",
+    "email": "dad2iajd@aDnajdn.com",
+    "descricao": "dada",
+    "senha": "ad"
+  },
+  {
+    "avatarimg": "https://static3.tcdn.com.br/img/img_prod/460977/teste_100485_1_cbc226c7d23a19c784fb4752ffe61337.png",
+    "username": "rtt",
+    "email": "teste@gmail.com",
+    "descricao": "test",
+    "senha": "ad"
   }
 ]

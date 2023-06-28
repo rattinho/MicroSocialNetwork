@@ -16,15 +16,16 @@ verificaUsuario = (user,email)=>{
     }
 }
 
-exports.cadastraUser = function(user,desc,email,senha){
+exports.cadastraUser = function(params){
     const newUser = {
-        username: user,
-        email: email,
-        descricao: desc,
-        senha: senha
+        avatarimg: params.avatarimg,
+        username: params.username,
+        email: params.email,
+        descricao: params.desc,
+        senha: params.password
     }
 
-    if(fs.existsSync(nomearquivo) && verificaUsuario(user,email)){
+    if(fs.existsSync(nomearquivo) && verificaUsuario(params.username,params.email)){
         const conteudoArquivo = fs.readFileSync(nomearquivo, 'utf-8');
         const users = JSON.parse(conteudoArquivo);
         users.push(newUser)

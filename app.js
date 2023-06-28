@@ -41,7 +41,7 @@ app.post('/', (req,res)=>{
     if(req.body.anon && req.body.post != ''){
         subpost.adicionaPost("Anonymou", req.body.post)
     }else if(req.body.post != ''){
-        subpost.adicionaPost(req.session.login, req.body.post)
+        subpost.adicionaPost(req.session.login, req.body.post, gu.acessaUser(req.session.login).avatarimg)
     }
     res.redirect('/')
 })
@@ -54,8 +54,8 @@ app.get('/register', (req,res)=>{
 app.post('/register', (req,res)=>{
     let params = req.body;
     if(params.password == params.password_confirm){
-        gu.cadastraUser(params.username, params.desc, params.email, params.password)
-        res.render('login')
+        gu.cadastraUser(params)
+        res.redirect('/login')
     }
 })
 
