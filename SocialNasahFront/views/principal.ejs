@@ -1,0 +1,55 @@
+<%- include('modules/header.ejs') %>
+    <div class="container d-flex flex-column align-items-center" style="height:100%">
+        <div class="card align-items-center d-flex flex-column mt-3" style="width: 100%;">
+            <div style="width: 100%;">
+                <%- include('modules/navbar.ejs') %>
+            </div>
+            <div class="d-flex flex-column align-items-center" style="width: 100%">
+                <div class="d-flex flex-column align-items-center" style="width: 100%; height: 95%;">
+                    <div class="d-flex flex-column align-items-center" style="width: 100%;">
+                        <span class="mt-2">Diga tudo patrão!</span>
+                        <form action="/" method="post" style="width: 90%;">
+                            <textarea class="form-control shadow-lg" name="post" aria-label="With textarea" style="height: 150px; width: 100%;"></textarea>
+                            <div class="d-flex flex-row justify-content-end align-items-center mt-2">
+                                <input class="me-1" type="checkbox" name="anon"/>
+                                <span>Envio anonimo?</span>
+                                <button type="submit" class="btn btn-secondary ms-2">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <% if(posts.length > 0) { %>
+                        <% posts.forEach(function(post) { %>
+                        <div class="card my-2" style="width: 90%;">
+                            <div class="card-header d-flex flex-row">
+                                <div class="d-flex flex-row" style="width: 20%">
+                                    <img src="<%= post.avatarimg %>" class="shadow rounded-circle post-image"/>
+                                    <h5 class="pt-2"><%= post.username %></h5>
+                                </div>
+                                <div class="d-flex flex-row justify-content-end" style="width: 80%">
+                                    <p style="font-size: x-small;"><%= new Date(post.createdAt).toLocaleString() %></p>
+                                </div>
+                            </div>
+                            <div class="card-text p-2">
+                                <p><i><%= post.post %></i></p>
+                            </div>
+                        </div>
+                        <% }); %>
+                        <div class="pagination">
+                            <% pageNumber = parseInt(pageNumber) %>
+                            <% if(pageNumber > 1) { %>
+                            <a href="/?page=<%= pageNumber - 1 %>"><%= pageNumber - 1 %></a>
+                            <span> <</span>
+                            <% } %>
+                            <span><%= pageNumber %></span>
+                            <% if(posts.length === postsPerPage) { %>
+                            <span> <</span>
+                            <a href="/?page=<%= pageNumber + 1 %>"><%= pageNumber + 1 %></a>
+                            <% } %>
+                        </div>
+                    <% } else { %>
+                        <p>Nenhum post para exibir</p>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+<%- include('modules/footer.ejs') %>

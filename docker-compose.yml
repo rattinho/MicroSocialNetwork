@@ -1,13 +1,21 @@
 services:
-  MongoDB:
-    container_name: SocialNasah-DB
+  sndb:
     image: mongo
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: toor
+    expose:
+      - 27017
     ports:
       - 27017:27017
     volumes:
       - ./bd:/data/db
 
+  snfrontend:
+    build: ./SocialNasahFront
+    environment:
+      BDUSER: root
+      BDPASS: toor
+    ports:
+      - 3000:3000
     
