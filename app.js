@@ -12,6 +12,8 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 
+
+// Páginas de LOGIN
 app.get('/login', (req,res)=>{
     res.render('login')
 })
@@ -25,6 +27,9 @@ app.post('/login',(req,res)=>{
     }
 })
 
+
+
+// Página Principal
 app.get('/', (req,res)=>{
     if(req.session.login){
         if(req.query.page){
@@ -39,7 +44,7 @@ app.get('/', (req,res)=>{
 
 app.post('/', (req,res)=>{
     if(req.body.anon && req.body.post != ''){
-        subpost.adicionaPost("Anonymou", req.body.post)
+        subpost.adicionaPost("", req.body.post, "/images/anon.png")
     }else if(req.body.post != ''){
         subpost.adicionaPost(req.session.login, req.body.post, gu.acessaUser(req.session.login).avatarimg)
     }
@@ -47,6 +52,7 @@ app.post('/', (req,res)=>{
 })
 
 
+// Página de Registro
 app.get('/register', (req,res)=>{
     res.render('register')
 })
@@ -59,5 +65,24 @@ app.post('/register', (req,res)=>{
     }
 })
 
+//Página de Editar Usuário
+app.get('/edit', (req, res)=>{
+    if(req.session.login){
+        res.render('edit', {user: gu.acessaUser(req.session.login)})
+    }else{
+        res.redirect('/login')
+    }
+
+})
+
+app.post('/edit', (req,res)=>{
+    if(req.session.login){
+        if(gu.alteraUser(req.session.login,req.body.avatarimg)){
+            res.redirect('/')
+        }else{
+            res.redirect('/edit')
+        }
+    }
+})
 
 app.listen(3000, ()=>{console.log("---Servidor iniciado na porta 3000---")})

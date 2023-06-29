@@ -1,0 +1,18 @@
+<%- include('modules/header.ejs') %>
+    <div class="container d-flex flex-column align-items-center" style="height:100%">
+        <div class="card align-items-center d-flex flex-column mt-3" style="width: 100%;">
+            <div style="width: 100%;">
+                <%- include('modules/navbar.ejs') %>
+            </div>
+            <form  action="/edit" method="post" style="width: 90%;">
+                <div class="m-3">
+                    <label for="exampleFormControlInput1" class="form-label">Nova foto de Perfil</label>
+                    <input type="text" name="avatarimg" class="form-control" id="exampleFormControlInput1" placeholder="www.img.com/suaimg.png">
+                </div>
+                <div class="m-2 d-flex flex-column align-items-center" style="width: 100%;">
+                    <button type="submit" class="btn btn-secondary p-2">Alterar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+<%- include('modules/footer.ejs') %>

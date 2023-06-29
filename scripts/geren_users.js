@@ -38,6 +38,21 @@ exports.cadastraUser = function(params){
     }
 }
 
+exports.alteraUser = function(login, img){
+    if(fs.existsSync(nomearquivo)){
+        let conteudoArquivo = fs.readFileSync(nomearquivo, 'utf-8');
+        let users = JSON.parse(conteudoArquivo);
+        for(let i = 0; i < users.length; i++){
+            if(users[i].username == login){
+                users[i].avatarimg = img;
+                fs.writeFileSync(nomearquivo, JSON.stringify(users, null, 2));
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
 
 exports.validaUser = function(user, pass){
     if(fs.existsSync(nomearquivo)){

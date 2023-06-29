@@ -40,5 +40,12 @@
     "email": "teste@gmail.com",
     "descricao": "test",
     "senha": "ad"
+  },
+  {
+    "avatarimg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpxr-_5iyG5rcsz-gb-d5FEapVmi0wFf1-7pVTagK65A&s",
+    "username": "ad",
+    "email": "ad@ad.com",
+    "descricao": "TESTE",
+    "senha": "ad"
   }
 ]

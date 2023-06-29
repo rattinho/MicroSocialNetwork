@@ -1,0 +1,12 @@
+.profile-image {
+    width: 50px; /* Defina a largura desejada para a imagem */
+    height: 50px; /* Defina a altura desejada para a imagem */
+    object-fit: cover; /* Evita a distorção da imagem */
+}
+
+.post-image {
+    margin-right: 0.5rem;
+    width: 40px; /* Defina a largura desejada para a imagem */
+    height: 40px; /* Defina a altura desejada para a imagem */
+    object-fit: cover; /* Evita a distorção da imagem */
+}
