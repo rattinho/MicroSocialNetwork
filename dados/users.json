@@ -1,51 +1,26 @@
 [
   {
-    "avatarimg": "www.img.com/image.png",
+    "avatarimg": "https://redemachado.com.br/arquivos/410030.jpg",
     "username": "rattinho",
-    "email": "email@email.com",
-    "descricao": "dadawdaawd",
-    "senha": "ad"
+    "email": "rattinho@gmail.com",
+    "senha": "fgratto"
   },
   {
-    "avatarimg": "dawijdawdjwaidaj",
-    "username": "teste",
-    "email": "dajiwdjoai@ajdiaowjid.com",
-    "descricao": "aiwdaodjawijd",
-    "senha": "ad"
-  },
-  {
-    "avatarimg": "dawijdawdjwaidaj",
-    "username": "teste",
-    "email": "dajiwdjoai@ajdiaowjid.com",
-    "descricao": "aiwdaodjawijd",
-    "senha": "ad"
-  },
-  {
-    "avatarimg": "awdad",
-    "username": "adwda",
-    "email": "dawdawd@dawda.com",
-    "descricao": "adwdwadaw",
-    "senha": "ad"
-  },
-  {
-    "avatarimg": "adwda",
-    "username": "rarwadw",
-    "email": "dad2iajd@aDnajdn.com",
-    "descricao": "dada",
-    "senha": "ad"
-  },
-  {
-    "avatarimg": "https://static3.tcdn.com.br/img/img_prod/460977/teste_100485_1_cbc226c7d23a19c784fb4752ffe61337.png",
-    "username": "rtt",
-    "email": "teste@gmail.com",
-    "descricao": "test",
-    "senha": "ad"
-  },
-  {
-    "avatarimg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpxr-_5iyG5rcsz-gb-d5FEapVmi0wFf1-7pVTagK65A&s",
-    "username": "ad",
+    "avatarimg": "\"<script>alert(\"teste\")</script>\"",
+    "username": "fgratto",
     "email": "ad@ad.com",
-    "descricao": "TESTE",
     "senha": "ad"
+  },
+  {
+    "avatarimg": "https://redemachado.com.br/arquivos/410030.jpg",
+    "username": "rtt",
+    "email": "ad@ad.com",
+    "descricao": "dwdwadwdadwadadawddawdda"
+  },
+  {
+    "avatarimg": "https://redemachado.com.br/arquivos/410030.jpg",
+    "username": "rtt",
+    "email": "ad@ad.com",
+    "descricao": "dadwadad"
   }
 ]

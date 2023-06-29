@@ -1,6 +1,6 @@
 const express = require('express')
 const session = require('express-session')
-const gu = require(__dirname + '/scripts/geren_users.js')
+const MU = require(__dirname + '/scripts/ManageUsers')
 const subpost = require(__dirname + '/scripts/submitpost.js')
 
 
@@ -18,12 +18,15 @@ app.get('/login', (req,res)=>{
     res.render('login')
 })
 
-app.post('/login',(req,res)=>{
-    if(gu.validaUser(req.body.login, req.body.senha)){
-        req.session.login = req.body.login;
-        res.redirect('/')
+app.post('/login',async (req,res)=>{
+    let user = await MU.getUserData(req.body.login)
+    if(user){
+        if(req.body.senha == user.senha){
+            req.session.login = user.username
+            res.redirect('/')
+        }
     }else{
-        res.render('login')
+        res.redirect('/login')
     }
 })
 
@@ -57,10 +60,10 @@ app.get('/register', (req,res)=>{
     res.render('register')
 })
 
-app.post('/register', (req,res)=>{
+app.post('/register', async (req,res)=>{
     let params = req.body;
-    if(params.password == params.password_confirm){
-        gu.cadastraUser(params)
+    if(params.senha == params.senha_confirm){
+        await MU.setNewUser(params)
         res.redirect('/login')
     }
 })
