@@ -14,7 +14,10 @@
                 <div class="card-header d-flex flex-row">
                     <div class="d-flex flex-row" style="width: 20%">
                         <img src="<%= userX.avatarimg %>" class="shadow rounded-circle post-image"/>
-                        <h5 class="pt-2"><%= userX.username %></h5>
+                        <div class="d-flex flex-column align-items-start">
+                            <h5 class="m-0" style="font-size:medium;"><%= userX.username %></h5>
+                            <p class="m-0" style="font-size: smaller;"><%= userX.email %></p>
+                        </div>
                     </div>
                     <div class="d-flex flex-row justify-content-end" style="width: 80%">
                         <p style="font-size: x-small;">Membro desde: <%= new Date(userX.createdAt).toLocaleString() %></p>
