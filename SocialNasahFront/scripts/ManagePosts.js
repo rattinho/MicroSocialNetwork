@@ -1,11 +1,19 @@
 const mongoose = require('mongoose');
 const dbuser = process.env.BDUSER
 const dbpass = process.env.BDPASS
+const docker = false
 
-mongoose.connect('mongodb://'+dbuser+':'+dbpass+'@sndb:27017/socialnasah?authSource=admin', {
-useNewUrlParser: true,
-useUnifiedTopology: true
-});
+if(docker){
+    mongoose.connect('mongodb://'+dbuser+':'+dbpass+'@sndb:27017/socialnasah?authSource=admin', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    });
+}else{
+    mongoose.connect('mongodb://root:toor@localhost:27017/socialnasah?authSource=admin', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    });
+}
 
 db = mongoose.connection
 
@@ -35,7 +43,7 @@ exports.setNewPost = async function(user, postage, img){
 }
 
 exports.getPosts = function(word){
-    if(word == ""){
+    if(word == undefined){
         let posts = Post.find()
         return posts;
     }else{

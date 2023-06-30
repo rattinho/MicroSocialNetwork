@@ -1,11 +1,20 @@
 const mongoose = require('mongoose');
 const dbuser = process.env.BDUSER
 const dbpass = process.env.BDPASS
+const docker = false
 
-mongoose.connect('mongodb://'+dbuser+':'+dbpass+'@sndb:27017/socialnasah?authSource=admin', {
-useNewUrlParser: true,
-useUnifiedTopology: true
-});
+if(docker){
+    mongoose.connect('mongodb://'+dbuser+':'+dbpass+'@sndb:27017/socialnasah?authSource=admin', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    });
+}else{
+    mongoose.connect('mongodb://root:toor@localhost:27017/socialnasah?authSource=admin', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    });
+}
+
 
 db = mongoose.connection
 
@@ -23,7 +32,7 @@ const UserSchema = new Schema({
     email: String,
     senha: String,
     datanasc: Date
-});
+},{timestamps: true});
 
 const User = mongoose.model('User', UserSchema);
 
@@ -50,4 +59,14 @@ exports.modUser = async function(user, params){
     }
     const users = await User.findOneAndUpdate({username: user.username}, modUsers)
     return true
+}
+
+exports.getUsers = function(word){
+    if(word == undefined){
+        var users = User.find()
+    }else{
+        const searchRegex = new RegExp(word, 'i');
+        var users = User.find({$or:[{username: searchRegex}, {desc: searchRegex}]})
+    }
+    return users;
 }

@@ -38,17 +38,12 @@ app.get('/', async (req,res)=>{
         const postsPerPage = 4;
         const pageNumber = req.query.page || 1;
         let posts
-        if(req.query.search != undefined){
-            posts = await MP.getPosts(req.query.search)
-            .sort({ createdAt: -1 })
-            .skip((pageNumber - 1) * postsPerPage)
-            .limit(postsPerPage);
-        }else{
-            posts = await MP.getPosts("")
-                .sort({ createdAt: -1 })
-                .skip((pageNumber - 1) * postsPerPage)
-                .limit(postsPerPage);
-        }
+        
+        posts = await MP.getPosts(req.query.search)
+        .sort({ createdAt: -1 })
+        .skip((pageNumber - 1) * postsPerPage)
+        .limit(postsPerPage);
+
         res.render('principal', {user: await MU.getUserData(req.session.login), posts: posts, pageNumber: pageNumber, postsPerPage: postsPerPage})
     }else{
         res.redirect('/login')
@@ -96,6 +91,17 @@ app.post('/edit', async(req,res)=>{
             res.redirect('/edit')
         }
     }
+})
+
+//Página de Membros
+app.get('/members', async(req,res)=>{
+    if(req.session.login){
+        let userlist =  await MU.getUsers(req.query.search)
+        res.render('members', {user: await MU.getUserData(req.session.login), userlist: userlist})
+    }else{
+        res.redirect('/login')
+    }
+
 })
 
 app.listen(3000, ()=>{console.log("---Servidor iniciado na porta 3000---")})
