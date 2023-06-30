@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const dbuser = process.env.BDUSER
 const dbpass = process.env.BDPASS
-const docker = true
+const docker = false
 
 if(docker){
     mongoose.connect('mongodb://'+dbuser+':'+dbpass+'@sndb:27017/socialnasah?authSource=admin', {

@@ -9,7 +9,8 @@
                     <div class="d-flex flex-column align-items-center" style="width: 100%;">
                         <span class="mt-2">Diga tudo patrão!</span>
                         <form action="/" method="post" style="width: 90%;">
-                            <textarea class="form-control shadow-lg" name="post" aria-label="With textarea" style="height: 150px; width: 100%;"></textarea>
+                            <% let placeholder = "Para adicionar imagens use--> img:(LINK DA IMAGEM)" %>
+                            <textarea class="form-control shadow-lg" name="post" aria-label="With textarea" style="height: 150px; width: 100%;" placeholder="<%= placeholder %>"></textarea>
                             <div class="d-flex flex-row justify-content-end align-items-center mt-2">
                                 <input class="me-1" type="checkbox" name="anon"/>
                                 <span>Envio anonimo?</span>
@@ -30,7 +31,20 @@
                                 </div>
                             </div>
                             <div class="card-text p-2">
-                                <p><i><%= post.post %></i></p>
+                                <% let parts = post.post.split('img:'); %>
+                                <% if(parts.length > 1){ %>
+                                    <% parts.forEach(function(part, index){ %>
+                                        <% if(index !== 0) { %>
+                                            <% let imgLink = part.trim().split(/\s/)[0]; %>
+                                            <img src="<%= imgLink %>" style="width:30%">
+                                            <p><%= part.trim().split(/\s/).slice(1).join(' ') %></p>
+                                        <% } else { %>
+                                            <p><%= part %></p>
+                                        <% } %>
+                                    <% });%>
+                                <% } else { %>
+                                    <p><%= post.post %></p>    
+                                <% } %>
                             </div>
                         </div>
                         <% }); %>

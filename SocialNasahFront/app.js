@@ -38,7 +38,6 @@ app.get('/', async (req,res)=>{
         const postsPerPage = 4;
         const pageNumber = req.query.page || 1;
         let posts
-        
         posts = await MP.getPosts(req.query.search)
         .sort({ createdAt: -1 })
         .skip((pageNumber - 1) * postsPerPage)
@@ -56,7 +55,7 @@ app.post('/', async (req,res)=>{
     }else if(req.body.post != ''){
         await MP.setNewPost(req.session.login, req.body.post, (await MU.getUserData(req.session.login)).avatarimg)
     }
-    res.redirect('/')
+    await res.redirect('/')
 })
 
 
