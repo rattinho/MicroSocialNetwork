@@ -2,12 +2,13 @@ const express = require('express')
 const session = require('express-session')
 const MP = require(__dirname + '/scripts/ManagePosts')
 const MU = require(__dirname + '/scripts/ManageUsers')
+require('dotenv').config();
 
 
 app = express()
 
 
-app.use(session({secret: 'jfiejdiowajdpoawdkopfjae'}))
+app.use(session({secret: process.env.SECRET}))
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))

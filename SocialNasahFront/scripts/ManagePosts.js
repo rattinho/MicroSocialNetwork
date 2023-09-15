@@ -1,15 +1,16 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 const dbuser = process.env.BDUSER
 const dbpass = process.env.BDPASS
-const docker = false
+const docker = process.env.DOCKER
 
-if(docker){
+if(docker === 'true'){
     mongoose.connect('mongodb://'+dbuser+':'+dbpass+'@sndb:27017/socialnasah?authSource=admin', {
         useNewUrlParser: true,
         useUnifiedTopology: true
     });
 }else{
-    mongoose.connect('mongodb://root:toor@localhost:27017/socialnasah?authSource=admin', {
+    mongoose.connect('mongodb://' + dbuser + ':' + dbpass + '@'+ process.env.DB_URL +'/' + process.env.DB_BASE + '?authSource=admin', {
         useNewUrlParser: true,
         useUnifiedTopology: true
     });
