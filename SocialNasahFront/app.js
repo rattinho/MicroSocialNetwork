@@ -104,4 +104,3 @@ app.get('/members', async(req,res)=>{
 
 })
 
-app.listen(process.env.PORT, ()=>{console.log("---Servidor iniciado na porta 3000---")})
